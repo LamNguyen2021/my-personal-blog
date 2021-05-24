@@ -3,7 +3,6 @@
     <div class="post-content">
       <div class="post-image">
         <div>
-          <!-- <img src="./assets/Blog-post/blog1.png" class="img" alt="blog1"> -->
           <img
             src="{{ blog.hinhAnh }}"
             alt=""
@@ -31,6 +30,14 @@
         <button class="btn post-btn" routerLink="/detail/{{blog.maPhim}}">
           Read More &nbsp; <i class="fas fa-arrow-right"></i>
         </button>
+        <ng-container *ngIf="currentAdmin">
+          <button class="btn post-btn">
+            Edit
+          </button>
+          <button class="btn post-btn">
+            Delete
+          </button>
+        </ng-container>
       </div>
     </div>
   </div>

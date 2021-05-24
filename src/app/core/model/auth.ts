@@ -1,9 +1,14 @@
 export interface Login {
-  username: string;
-  password: string;
+  taiKhoan: string;
+  matKhau: string;
 }
 
 export interface AdminInfo {
-  username: string;
-  // accessToken: string;
+  taiKhoan: string,
+  hoTen: string,
+  email: string,
+  soDT: string,
+  maNhom: string,
+  maLoaiNguoiDung: string,
+  accessToken: string
 }

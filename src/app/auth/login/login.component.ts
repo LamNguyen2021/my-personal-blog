@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { Router } from '@angular/router';
@@ -10,12 +10,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({
-    username: new FormControl('', [
+    // khi có api rồi thì nhớ đổi taiKhoan -> username
+    taiKhoan: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(20),
     ]),
-    password: new FormControl('', [
+    // khi có api rồi thì nhớ đổi matKhau -> password
+    matKhau: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
     ]),
@@ -29,25 +31,22 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.auth.login(loginForm.value).subscribe({
+    this.auth.login(this.loginForm.value).subscribe({
       next: (result) => {
-        if (result.username === 'admin') {
+        // Cập nhật thông tin admin vào biến currentAmdin trong AuthService
+        this.auth.currentAdmin.next(result);
+
+        // Lưu xuống localStorage
+        localStorage.setItem('admin', JSON.stringify(result));
+
+        if (result.taiKhoan === 'naruto') {
           this.router.navigateByUrl('/');
         }
       },
+      error: (error) => {
+        alert(error.error);
+      },
     });
-
-    // this.auth.login(this.loginForm.value).subscribe({
-    //   next: (result) => {
-    //     console.log(result);
-    //     if(result.admin === "admin") {
-    //       this.router.navigateByUrl("/")
-    //     }
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //   },
-    // })
   }
 
   ngOnInit(): void {}

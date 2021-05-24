@@ -29,9 +29,19 @@
         </li>
       </ul>
     </div>
-    <div class="login-button">
+    <!-- View khi chưa đăng nhập -->
+    <div class="login-button" *ngIf="!currentAdmin; else loginTemplate">
       <button class="custom-btn" routerLink="/login">Login</button>
     </div>
+
+    <!-- View khi đã đăng nhập -->
+    <ng-template #loginTemplate>
+      <div class="login-button">
+        <span *ngIf="currentAdmin" style="margin-right: 20px">Hello, {{ currentAdmin?.taiKhoan }}</span>
+        <button class="custom-btn btn-new">New article</button>
+        <button class="custom-btn" (click)="removeLocalStorage()">Logout</button>
+      </div>
+    </ng-template>
   </div>
 </nav>
 

@@ -71,14 +71,28 @@
   height: 40px;
   color: #fff;
   border-radius: 5px;
-  padding: 10px 25px;
+  padding: 10px 20px;
   font-weight: 500;
   cursor: pointer;
   position: relative;
   display: inline-block;
   outline: none;
   background: var(--midnight);
-  border: none;
+  border: 1px solid var(--midnight);
+}
+
+.btn-new {
+  width: 140px;
+  margin-right: 10px;
+  background: transparent;
+  border: 1px solid var(--midnight);
+  color: var(--midnight);
+  transition: all 0.2s;
+}
+
+.btn-new:hover {
+  background: var(--midnight);
+  color: #fff;
 }
 
 

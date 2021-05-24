@@ -41,6 +41,7 @@
   border-radius: 0;
   padding: .7rem 1.5rem;
   background: var(--sky);
+  margin-right: 10px;
 }
 
 .posts .pagination{

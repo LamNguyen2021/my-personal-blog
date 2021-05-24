@@ -8,24 +8,24 @@
           type="text"
           placeholder="Username"
           class="input"
-          formControlName="username"
+          formControlName="taiKhoan"
         />
         <!-- validate username -->
         <div
           *ngIf="
-            loginForm.get('username').invalid &&
-            (loginForm.get('username').touched ||
-              loginForm.get('username').dirty)
+            loginForm.get('taiKhoan').invalid &&
+            (loginForm.get('taiKhoan').touched ||
+              loginForm.get('taiKhoan').dirty)
           "
         >
-          <span class="error" *ngIf="loginForm.get('username').errors.required"
+          <span class="error" *ngIf="loginForm.get('taiKhoan').errors.required"
             >*Please enter your username</span
           >
           <span
             class="error"
             *ngIf="
-              loginForm.get('username').errors.minlength ||
-              loginForm.get('username').errors.maxlength
+              loginForm.get('taiKhoan').errors.minlength ||
+              loginForm.get('taiKhoan').errors.maxlength
             "
             >*Your username must be between 5 and 20 characters.</span
           >
@@ -34,20 +34,20 @@
           type="password"
           placeholder="Password"
           class="input"
-          formControlName="password"
+          formControlName="matKhau"
         />
         <!-- validate password -->
         <div
           *ngIf="
-            loginForm.get('password').invalid &&
-            (loginForm.get('password').touched ||
-              loginForm.get('password').dirty)
+            loginForm.get('matKhau').invalid &&
+            (loginForm.get('matKhau').touched ||
+              loginForm.get('matKhau').dirty)
           "
         >
-          <span class="error" *ngIf="loginForm.get('password').errors.required"
+          <span class="error" *ngIf="loginForm.get('matKhau').errors.required"
             >*Please enter your password</span
           >
-          <span class="error" *ngIf="loginForm.get('password').errors.minlength"
+          <span class="error" *ngIf="loginForm.get('matKhau').errors.minlength"
             >*Your password must be at least 4 characters.</span
           >
         </div>
