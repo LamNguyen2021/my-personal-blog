@@ -1,27 +1,62 @@
 <section class="new-article">
   <div class="new-content">
-    <form>
+    <form (ngSubmit)="handleSubmitArticle(createForm)" [formGroup]="createForm">
       <div class="form-element">
         <label for="title">Title</label>
         <input
           id="title"
           type="text"
           placeholder="Title of blog post"
+          formControlName="title"
         />
       </div>
+      <!-- validate title -->
+      <div *ngIf="createForm.get('title').invalid && (createForm.get('title').touched || createForm.get('title').dirty)">
+        <span class="error" *ngIf="createForm.get('title').errors.required">*Title is required</span>
+      </div>
+
       <div class="form-element">
         <label for="image">Image</label>
         <input
           id="image"
           type="text"
-          placeholder="Image represents blog post"
+          placeholder="Image represents blog post. Paste image address here"
+          formControlName="image"
         />
       </div>
-      <div class="form-element">
-        <label for="excerpt">Excerpt</label>
-        <textarea id="excerpt" placeholder="Short description of blog post" rows="4"></textarea>
+      <!-- validate image -->
+      <div *ngIf="createForm.get('image').invalid && (createForm.get('image').touched || createForm.get('image').dirty)">
+        <span class="error" *ngIf="createForm.get('image').errors.required">*URL is required</span>
+        <span class="error" *ngIf="createForm.get('image').errors.pattern">*URL format is wrong</span>
       </div>
 
+      <div class="form-element">
+        <label for="excerpt">Excerpt</label>
+        <textarea
+          id="excerpt"
+          placeholder="Short description of blog post"
+          rows="4"
+          formControlName="excerpt"
+        ></textarea>
+      </div>
+      <!-- validate excerpt -->
+      <div *ngIf="createForm.get('excerpt').invalid && (createForm.get('excerpt').touched || createForm.get('excerpt').dirty)">
+        <span class="error" *ngIf="createForm.get('excerpt').errors.required">*Excerpt is required</span>
+        <span class="error" *ngIf="createForm.get('excerpt').errors.minlength">*Excerpt must be more than 100 characters</span>
+      </div>
+      <!-- ----X---X----- -->
+
+      <!-- ckeditor -->
+      <div class="form-element">
+        <label style="display: block; margin-bottom: 0.6rem">Content</label>
+        <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" formControlName="content"></ckeditor>
+      </div>
+      <!-- validate title -->
+      <div *ngIf="createForm.get('content').invalid && (createForm.get('content').touched || createForm.get('content').dirty)">
+        <span class="error" *ngIf="createForm.get('content').errors.required">*Content is required</span>
+      </div>
+
+      <button class="btn" [disabled]="createForm.invalid">Create</button>
     </form>
   </div>
 </section>
