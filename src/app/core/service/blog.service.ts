@@ -10,13 +10,12 @@ export class BlogService {
   constructor(private http: HttpClient) {}
 
   getBlogList(): Observable<Blog[]> {
-    const url =
-      'https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09';
+    const url = 'http://localhost:10000/api/post/';
     return this.http.get<Blog[]>(url);
   }
 
-  getBlogDetail(blogId: string): Observable<BlogDetail> {
-    const url = `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?maPhim=${blogId}`;
-    return this.http.get<BlogDetail>(url);
+  getBlogDetail(blogId: string): Observable<BlogDetail[]> {
+    const url = `http://localhost:10000/api/post/${blogId}`;
+    return this.http.get<BlogDetail[]>(url);
   }
 }

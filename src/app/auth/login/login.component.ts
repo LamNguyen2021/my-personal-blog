@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({
     // khi có api rồi thì nhớ đổi taiKhoan -> username
-    taiKhoan: new FormControl('', [
+    username: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(20),
     ]),
     // khi có api rồi thì nhớ đổi matKhau -> password
-    matKhau: new FormControl('', [
+    password: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
     ]),
@@ -39,12 +39,10 @@ export class LoginComponent implements OnInit {
         // Lưu xuống localStorage
         localStorage.setItem('admin', JSON.stringify(result));
 
-        if (result.taiKhoan === 'naruto') {
-          this.router.navigateByUrl('/');
-        }
+        this.router.navigateByUrl('/');
       },
       error: (error) => {
-        alert(error.error);
+        alert(error.error.error);
       },
     });
   }

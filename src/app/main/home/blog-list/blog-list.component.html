@@ -4,7 +4,7 @@
       <div class="post-image">
         <div>
           <img
-            src="{{ blog.hinhAnh }}"
+            src="{{ blog.urlImage }}"
             alt=""
             width="892px"
             height="476px"
@@ -22,16 +22,16 @@
       </div>
       <div class="post-title">
         <a routerLink="/detail/{{blog.maPhim}}">
-          {{ blog.tenPhim }}
+          {{ blog.title }}
         </a>
         <p>
-          {{ blog.moTa }}
+          {{ blog.excerpt }}
         </p>
-        <button class="btn post-btn" routerLink="/detail/{{blog.maPhim}}">
+        <button class="btn post-btn" routerLink="/detail/{{blog._id}}">
           Read More &nbsp; <i class="fas fa-arrow-right"></i>
         </button>
         <ng-container *ngIf="currentAdmin">
-          <button class="btn post-btn">
+          <button class="btn post-btn" routerLink="/edit/{{blog._id}}">
             Edit
           </button>
           <button class="btn post-btn">

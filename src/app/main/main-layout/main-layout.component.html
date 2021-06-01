@@ -37,7 +37,7 @@
     <!-- View khi đã đăng nhập -->
     <ng-template #loginTemplate>
       <div class="login-button">
-        <span *ngIf="currentAdmin" style="margin-right: 20px">Hello, {{ currentAdmin?.taiKhoan }}</span>
+        <!-- <span *ngIf="currentAdmin" style="margin-right: 20px">Hello, {{ currentAdmin?.taiKhoan }}</span> -->
         <button class="custom-btn btn-new" routerLink="/admin/new">New article</button>
         <button class="custom-btn" (click)="removeLocalStorage()">Logout</button>
       </div>

@@ -19,7 +19,7 @@ export class AuthService {
 
   login(values: Login): Observable<AdminInfo> {
     const url =
-      'https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap';
+      'http://localhost:10000/api/user/login';
     return this.http.post<AdminInfo>(url, values);
   }
 }

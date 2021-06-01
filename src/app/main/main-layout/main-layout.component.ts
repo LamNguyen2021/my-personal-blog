@@ -15,6 +15,7 @@ export class MainLayoutComponent implements OnInit {
 
   removeLocalStorage() {
     localStorage.removeItem("admin");
+    this.auth.currentAdmin.next(null);
   }
 
   ngOnInit(): void {

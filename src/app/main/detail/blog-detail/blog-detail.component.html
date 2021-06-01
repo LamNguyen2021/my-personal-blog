@@ -2,14 +2,14 @@
   <div class="content-area">
     <div class="entry-title">
       <h1>
-        {{blogDetail.tenPhim}}
+        {{blogDetail[0]?.title}}
       </h1>
     </div>
     <div class="entry-image">
-      <img src={{blogDetail.hinhAnh}} alt="hinh1">
+      <img src={{blogDetail[0]?.urlImage}} alt="hinh1">
     </div>
     <div class="entry-content">
-      {{blogDetail.moTa}}
+      {{blogDetail[0]?.content}}
     </div>
   </div>
 </section>
