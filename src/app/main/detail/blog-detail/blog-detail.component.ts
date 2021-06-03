@@ -23,10 +23,16 @@ export class BlogDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe({
       next: (params) => {
         // lay duoc params, thi goi API
-        this.blogService.getBlogDetail(params.blogId).subscribe({
-          next: (result) => {
-            this.blogDetail = result;
-          },
+        this.blogService.getBlogDetail(params.blogId).subscribe((result) => {
+          result[0].publishDate = new Date(
+            result[0].publishDate
+          ).toLocaleDateString('en-GB');
+
+          result[0].lastModified = new Date(
+            result[0].lastModified
+          ).toLocaleDateString('en-GB');
+
+          this.blogDetail = result;
         });
       },
     });

@@ -4,8 +4,8 @@ export interface Blog {
   title: string;
   content: string;
   excerpt: string;
-  lastModified: Date;
-  publishDate: Date;
+  lastModified: Date | string;
+  publishDate: Date | string;
   urlImage: string;
   __v: number;
 }
@@ -16,8 +16,8 @@ export interface BlogDetail {
   title: string;
   content: string;
   excerpt: string;
-  lastModified: Date;
-  publishDate: Date;
+  lastModified: Date | string;
+  publishDate: Date | string;
   urlImage: string;
   __v: number;
 }

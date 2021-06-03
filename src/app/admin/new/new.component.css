@@ -1,13 +1,22 @@
-
 .new-article {
   width: 100%;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
+  width: 700px;
+  margin: 40px auto 80px auto;
+}
+
+.link {
+  color: #333;
+  font-weight: 600;
+}
+
+.link:hover {
+  color: #008997;
 }
 
 .new-article .new-content {
-  width: 700px;
-  margin: 80px auto;
+  margin-top: 40px;
 }
 
 .form-element {
@@ -46,7 +55,6 @@ textarea[placeholder] {
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
 }
-
 
 .btn {
   background-color: #0367a6;
@@ -88,4 +96,3 @@ textarea[placeholder] {
 :host ::ng-deep .ck-editor__editable_inline {
   min-height: 500px;
 }
-

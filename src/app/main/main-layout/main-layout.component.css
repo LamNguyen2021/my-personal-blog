@@ -121,6 +121,10 @@ footer.footer .container h2 {
   color: var(--white);
 }
 
+footer.footer .container p {
+  color: var(--text-light);
+}
+
 footer.footer .newsletter .form-element {
   background: black;
   display: inline-block;

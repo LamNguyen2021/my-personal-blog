@@ -1,4 +1,5 @@
 <section class="new-article">
+  <a routerLink="/" class="link">&larr; Back to home</a>
   <div class="new-content">
     <form (ngSubmit)="handleSubmitArticle(createForm)" [formGroup]="createForm">
       <div class="form-element">
@@ -8,6 +9,7 @@
           type="text"
           placeholder=""
           formControlName="categoryId"
+          autocomplete="off"
         />
       </div>
       <div class="form-element">
@@ -17,6 +19,7 @@
           type="text"
           placeholder="Title of blog post"
           formControlName="title"
+          autocomplete="off"
         />
       </div>
       <!-- validate title -->
@@ -38,6 +41,7 @@
           type="text"
           placeholder="Image represents blog post. Paste image address here"
           formControlName="urlImage"
+          autocomplete="off"
         />
       </div>
       <!-- validate image -->

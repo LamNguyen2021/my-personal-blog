@@ -25,8 +25,12 @@ export class BlogListComponent implements OnInit {
     if (isDelete) {
       this.postService.deletePost(blogId).subscribe(() => {
         alert('Delete success');
-        this.blogService.getBlogList().subscribe((data) => {
-          this.blogList = data;
+        this.blogService.getBlogList().subscribe((result) => {
+          result.forEach(el => {
+            el.publishDate = new Date(el.publishDate).toLocaleDateString('en-GB');
+            el.lastModified = new Date(el.lastModified).toLocaleDateString('en-GB');
+          });
+          this.blogList = result;
         })
       });
     }
@@ -36,6 +40,11 @@ export class BlogListComponent implements OnInit {
     this.blogService.getBlogList().subscribe({
       // Nhận data
       next: (result) => {
+        result.forEach(el => {
+          el.publishDate = new Date(el.publishDate).toLocaleDateString('en-GB');
+          el.lastModified = new Date(el.lastModified).toLocaleDateString('en-GB');
+        });
+
         this.blogList = result;
       },
       // Nhận lỗi và kết thúc observable
