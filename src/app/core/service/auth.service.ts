@@ -19,7 +19,7 @@ export class AuthService {
 
   login(values: Login): Observable<AdminInfo> {
     const url =
-      'http://localhost:10000/api/user/login';
+      'https://blog-nodejs-api.herokuapp.com/api/user/login';
     return this.http.post<AdminInfo>(url, values);
   }
 }

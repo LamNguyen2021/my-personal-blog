@@ -8,8 +8,7 @@
     <div class="entry-image">
       <img src={{blogDetail[0]?.urlImage}} alt="hinh1">
     </div>
-    <div class="entry-content">
-      {{blogDetail[0]?.content}}
+    <div class="entry-content" [innerHTML]="blogDetail[0]?.content">
     </div>
   </div>
 </section>

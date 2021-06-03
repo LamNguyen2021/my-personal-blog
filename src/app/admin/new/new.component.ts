@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { PostService } from 'src/app/core/service/post.service';
+import { BlogService } from 'src/app/core/service/blog.service';
+import { BlogDetail } from 'src/app/core/model/blog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new',
@@ -13,12 +17,14 @@ export class NewComponent implements OnInit {
 
   isEditMode: boolean = false;
   id: string;
+  blogDetail: BlogDetail[] = [];
 
   public Editor = ClassicEditor;
 
   createForm: FormGroup = new FormGroup({
+    categoryId: new FormControl('60b65e8bce734c00151f7d7c'),
     title: new FormControl('', [Validators.required]),
-    image: new FormControl('', [
+    urlImage: new FormControl('', [
       Validators.required,
       Validators.pattern(this.url_regex),
     ]),
@@ -29,22 +35,41 @@ export class NewComponent implements OnInit {
     content: new FormControl('', [Validators.required]),
   });
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private postService: PostService,
+    private blogService: BlogService,
+    private router: Router
+  ) {}
 
   handleSubmitArticle(createForm: any) {
     if (createForm.invalid) {
       return;
     }
-    console.log(createForm.value);
 
-    createForm.reset();
+    this.postService.createPost(createForm.value).subscribe({
+      complete: () => {
+        alert('Create post success')
+        createForm.reset();
+        this.router.navigateByUrl('/');
+      }
+    })
   }
 
   ngOnInit(): void {
-    // this.id = this.activatedRoute.snapshot.params['id'];
-    // if (this.id) {
-    //   this.isEditMode = true;
-    // }
-    // console.log(this.isEditMode);
+    this.id = this.activatedRoute.snapshot.params['id'];
+    if (this.id) {
+      this.isEditMode = true;
+
+      // lay duoc params, thi goi API
+      this.blogService.getBlogDetail(this.id).subscribe((result) => {
+        this.createForm.patchValue({
+          title: result[0].title,
+          urlImage: result[0].urlImage,
+          excerpt:result[0].excerpt,
+          content: result[0].content
+        })
+      });
+    }
   }
 }

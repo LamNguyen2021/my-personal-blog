@@ -1,6 +1,6 @@
-<section class="new-article">
-  <div class="new-content">
-    <form (ngSubmit)="handleSubmitArticle(createForm)" [formGroup]="createForm">
+<section class="edit-article">
+  <div class="edit-content">
+    <form (ngSubmit)="handleSubmitArticle(editForm)" [formGroup]="editForm">
       <div class="form-element">
         <label for="categoryId">Category</label>
         <input
@@ -22,11 +22,11 @@
       <!-- validate title -->
       <div
         *ngIf="
-          createForm.get('title').invalid &&
-          (createForm.get('title').touched || createForm.get('title').dirty)
+          editForm.get('title').invalid &&
+          (editForm.get('title').touched || editForm.get('title').dirty)
         "
       >
-        <span class="error" *ngIf="createForm.get('title').errors.required"
+        <span class="error" *ngIf="editForm.get('title').errors.required"
           >*Title is required</span
         >
       </div>
@@ -37,21 +37,20 @@
           id="image"
           type="text"
           placeholder="Image represents blog post. Paste image address here"
-          formControlName="urlImage"
+          formControlName="image"
         />
       </div>
       <!-- validate image -->
       <div
         *ngIf="
-          createForm.get('urlImage').invalid &&
-          (createForm.get('urlImage').touched ||
-            createForm.get('urlImage').dirty)
+          editForm.get('image').invalid &&
+          (editForm.get('image').touched || editForm.get('image').dirty)
         "
       >
-        <span class="error" *ngIf="createForm.get('urlImage').errors.required"
+        <span class="error" *ngIf="editForm.get('image').errors.required"
           >*URL is required</span
         >
-        <span class="error" *ngIf="createForm.get('urlImage').errors.pattern"
+        <span class="error" *ngIf="editForm.get('image').errors.pattern"
           >*URL format is wrong</span
         >
       </div>
@@ -68,14 +67,14 @@
       <!-- validate excerpt -->
       <div
         *ngIf="
-          createForm.get('excerpt').invalid &&
-          (createForm.get('excerpt').touched || createForm.get('excerpt').dirty)
+          editForm.get('excerpt').invalid &&
+          (editForm.get('excerpt').touched || editForm.get('excerpt').dirty)
         "
       >
-        <span class="error" *ngIf="createForm.get('excerpt').errors.required"
+        <span class="error" *ngIf="editForm.get('excerpt').errors.required"
           >*Excerpt is required</span
         >
-        <span class="error" *ngIf="createForm.get('excerpt').errors.minlength"
+        <span class="error" *ngIf="editForm.get('excerpt').errors.minlength"
           >*Excerpt must be more than 100 characters</span
         >
       </div>
@@ -93,22 +92,17 @@
       <!-- validate title -->
       <div
         *ngIf="
-          createForm.get('content').invalid &&
-          (createForm.get('content').touched || createForm.get('content').dirty)
+          editForm.get('content').invalid &&
+          (editForm.get('content').touched || editForm.get('content').dirty)
         "
       >
-        <span class="error" *ngIf="createForm.get('content').errors.required"
+        <span class="error" *ngIf="editForm.get('content').errors.required"
           >*Content is required</span
         >
       </div>
 
-      <span *ngIf="isEditMode; else createButton">
-        <button class="btn" [disabled]="createForm.invalid">Edit</button>
-      </span>
-
-      <ng-template #createButton>
-        <button class="btn" [disabled]="createForm.invalid">Create</button>
-      </ng-template>
+      <button class="btn" [disabled]="editForm.invalid">Edit</button>
     </form>
   </div>
 </section>
+

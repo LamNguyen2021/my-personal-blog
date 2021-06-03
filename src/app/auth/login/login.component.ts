@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({
-    // khi có api rồi thì nhớ đổi taiKhoan -> username
+
     username: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(20),
     ]),
-    // khi có api rồi thì nhớ đổi matKhau -> password
+
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(4),

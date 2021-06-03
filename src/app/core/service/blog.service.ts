@@ -10,12 +10,12 @@ export class BlogService {
   constructor(private http: HttpClient) {}
 
   getBlogList(): Observable<Blog[]> {
-    const url = 'http://localhost:10000/api/post/';
+    const url = 'https://blog-nodejs-api.herokuapp.com/api/post/';
     return this.http.get<Blog[]>(url);
   }
 
   getBlogDetail(blogId: string): Observable<BlogDetail[]> {
-    const url = `http://localhost:10000/api/post/${blogId}`;
+    const url = `https://blog-nodejs-api.herokuapp.com/api/post/${blogId}`;
     return this.http.get<BlogDetail[]>(url);
   }
 }
