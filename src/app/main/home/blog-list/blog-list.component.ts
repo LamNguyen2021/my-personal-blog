@@ -3,6 +3,7 @@ import { BlogService } from 'src/app/core/service/blog.service';
 import { Blog } from 'src/app/core/model/blog';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { AdminInfo } from 'src/app/core/model/auth';
+import { PostService } from 'src/app/core/service/post.service';
 
 @Component({
   selector: 'app-blog-list',
@@ -13,7 +14,23 @@ export class BlogListComponent implements OnInit {
   blogList: Blog[] = [];
   currentAdmin: AdminInfo | null = null;
 
-  constructor(private blogService: BlogService, private auth: AuthService) {}
+  constructor(
+    private blogService: BlogService,
+    private auth: AuthService,
+    private postService: PostService
+  ) {}
+
+  handleDelete(blogId) {
+    const isDelete = confirm('Are you sure you want to delete ?');
+    if (isDelete) {
+      this.postService.deletePost(blogId).subscribe(() => {
+        alert('Delete success');
+        this.blogService.getBlogList().subscribe((data) => {
+          this.blogList = data;
+        })
+      });
+    }
+  }
 
   ngOnInit(): void {
     this.blogService.getBlogList().subscribe({

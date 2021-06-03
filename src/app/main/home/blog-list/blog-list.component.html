@@ -34,7 +34,7 @@
           <button class="btn post-btn" routerLink="/admin/edit/{{blog._id}}">
             Edit
           </button>
-          <button class="btn post-btn">
+          <button class="btn post-btn" (click)="handleDelete(blog._id)">
             Delete
           </button>
         </ng-container>

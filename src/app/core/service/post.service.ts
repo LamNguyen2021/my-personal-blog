@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CreatePost, NewPost } from '../model/post';
+import { CreatePost, EditedPost, EditPost, NewPost } from '../model/post';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -23,26 +23,14 @@ export class PostService {
     const url = 'https://blog-nodejs-api.herokuapp.com/api/post';
     return this.http.post<NewPost>(url, values, httpOptions);
   }
+
+  editPost(values: EditPost, id: string): Observable<EditedPost> {
+    const url = `https://blog-nodejs-api.herokuapp.com/api/post/${id}`;
+    return this.http.put<EditedPost>(url, values);
+  }
+
+  deletePost(id: string):Observable<any> {
+    const url = `https://blog-nodejs-api.herokuapp.com/api/post/${id}`;
+    return this.http.delete(url)
+  }
 }
-
-// const token = JSON.parse(localStorage.getItem('admin')).token;
-
-//     const httpHeader = new HttpHeaders({
-//       'Content-Type': 'application/json',
-//       'x-access-token': token
-//     });
-//     httpHeader.append('Content-Type', 'application/json');
-//     httpHeader.append('x-access-token', token);
-
-//     const url = 'https://blog-nodejs-api.herokuapp.com/api/post';
-//     return this.http.post<NewPost>(url, values, { headers: httpHeader });
-
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     'Content-Type': 'application/json',
-//     'x-access-token': token,
-//   }),
-// };
-
-// const url = 'https://blog-nodejs-api.herokuapp.com/api/post';
-// return this.http.post<NewPost>(url, values, httpOptions);

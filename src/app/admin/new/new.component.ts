@@ -6,6 +6,7 @@ import { PostService } from 'src/app/core/service/post.service';
 import { BlogService } from 'src/app/core/service/blog.service';
 import { BlogDetail } from 'src/app/core/model/blog';
 import { Router } from '@angular/router';
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 
 @Component({
   selector: 'app-new',
@@ -47,13 +48,23 @@ export class NewComponent implements OnInit {
       return;
     }
 
-    this.postService.createPost(createForm.value).subscribe({
-      complete: () => {
-        alert('Create post success')
-        createForm.reset();
-        this.router.navigateByUrl('/');
-      }
-    })
+    if (this.isEditMode) {
+      this.postService.editPost(createForm.value, this.id).subscribe({
+        complete: () => {
+          createForm.reset();
+          alert('Edit post success');
+          this.router.navigateByUrl('/');
+        },
+      });
+    } else {
+      this.postService.createPost(createForm.value).subscribe({
+        complete: () => {
+          createForm.reset();
+          alert('Create post success');
+          this.router.navigateByUrl('/');
+        },
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -66,9 +77,9 @@ export class NewComponent implements OnInit {
         this.createForm.patchValue({
           title: result[0].title,
           urlImage: result[0].urlImage,
-          excerpt:result[0].excerpt,
-          content: result[0].content
-        })
+          excerpt: result[0].excerpt,
+          content: result[0].content,
+        });
       });
     }
   }
