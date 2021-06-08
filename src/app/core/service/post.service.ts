@@ -20,7 +20,7 @@ export class PostService {
       }),
     };
 
-    const url = 'https://blog-nodejs-api.herokuapp.com/api/post';
+    const url = 'https://shielded-headland-73535.herokuapp.com/api/post';
     return this.http.post<NewPost>(url, values, httpOptions);
   }
 
@@ -33,7 +33,7 @@ export class PostService {
         'x-access-token': token,
       }),
     };
-    const url = `https://blog-nodejs-api.herokuapp.com/api/post/${id}`;
+    const url = `https://shielded-headland-73535.herokuapp.com/api/post/${id}`;
     return this.http.put<EditedPost>(url, values, httpOptions);
   }
 
@@ -46,7 +46,7 @@ export class PostService {
         'x-access-token': token,
       }),
     };
-    const url = `https://blog-nodejs-api.herokuapp.com/api/post/${id}`;
+    const url = `https://shielded-headland-73535.herokuapp.com/api/post/${id}`;
     return this.http.delete(url, httpOptions);
   }
 }

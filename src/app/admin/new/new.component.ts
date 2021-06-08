@@ -6,7 +6,6 @@ import { PostService } from 'src/app/core/service/post.service';
 import { BlogService } from 'src/app/core/service/blog.service';
 import { BlogDetail } from 'src/app/core/model/blog';
 import { Router } from '@angular/router';
-import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 
 @Component({
   selector: 'app-new',
@@ -15,7 +14,7 @@ import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64u
 })
 export class NewComponent implements OnInit {
   url_regex = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
-  loading:boolean = false;
+  loading: boolean = false;
 
   isEditMode: boolean = false;
   id: string;
@@ -32,7 +31,7 @@ export class NewComponent implements OnInit {
     excerpt: new FormControl('', [
       Validators.required,
       Validators.minLength(100),
-      Validators.maxLength(500)
+      Validators.maxLength(500),
     ]),
     content: new FormControl('', [Validators.required]),
   });
