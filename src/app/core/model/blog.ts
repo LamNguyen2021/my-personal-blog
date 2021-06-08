@@ -1,6 +1,5 @@
 export interface Blog {
   _id: string;
-  categoryId: string;
   title: string;
   content: string;
   excerpt: string;
@@ -10,9 +9,16 @@ export interface Blog {
   __v: number;
 }
 
+export interface BlogGroup {
+  page:         number;
+  pageSize:     number;
+  data:         Blog[];
+  totalRecords: number;
+  totalPages:   number;
+}
+
 export interface BlogDetail {
   _id: string;
-  categoryId: string;
   title: string;
   content: string;
   excerpt: string;

@@ -2,19 +2,19 @@
   <div class="content-area">
     <div class="entry-title">
       <h1>
-        {{ blogDetail[0]?.title }}
+        {{ blogDetail?.title }}
       </h1>
     </div>
     <div class="entry-date">
       <span
         ><i class="fa fa-calendar-alt"></i>
-        {{ blogDetail[0]?.publishDate }}</span
+        {{ blogDetail?.publishDate }}</span
       >
-      <p style="margin: 7px 0;">Last updated: {{ blogDetail[0]?.lastModified }}</p>
+      <p style="margin: 7px 0;">Last updated: {{ blogDetail?.lastModified }}</p>
     </div>
     <div class="entry-image">
-      <img src="{{ blogDetail[0]?.urlImage }}" alt="hinh1" />
+      <img src="{{ blogDetail?.urlImage }}" alt="hinh1" />
     </div>
-    <div class="entry-content" [innerHTML]="blogDetail[0]?.content"></div>
+    <div class="entry-content" [innerHTML]="blogDetail?.content"></div>
   </div>
 </section>

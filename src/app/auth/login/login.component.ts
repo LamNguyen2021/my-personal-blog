@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  loading = false;
+
   loginForm: FormGroup = new FormGroup({
 
     username: new FormControl('', [
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
     this.auth.login(this.loginForm.value).subscribe({
       next: (result) => {
         // Cập nhật thông tin admin vào biến currentAmdin trong AuthService
@@ -42,8 +45,13 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/');
       },
       error: (error) => {
+        this.loading = true;
         alert(error.error.error);
+        loginForm.reset();
       },
+      complete: () => {
+        this.loading = false;
+      }
     });
   }
 

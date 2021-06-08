@@ -1,5 +1,15 @@
-<div class="posts">
-  <div *ngFor="let blog of blogList">
+<div class="posts" id="oley">
+  <div
+    *ngFor="
+      let blog of blogList
+        | paginate
+          : {
+              itemsPerPage: 5,
+              currentPage: currentPage,
+              totalItems: totalRecords
+            }
+    "
+  >
     <div class="post-content">
       <div class="post-image">
         <div>
@@ -14,23 +24,25 @@
         <div class="post-info flex-row">
           <span><i class="fas fa-user text-gray"></i>&nbsp;&nbsp;Admin</span>
           <span
-            ><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;{{blog.publishDate}}</span
+            ><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;{{
+              blog.publishDate
+            }}</span
           >
           <!-- <span>2 Commets</span> -->
         </div>
       </div>
       <div class="post-title">
-        <a routerLink="/detail/{{blog._id}}">
+        <a routerLink="/detail/{{ blog._id }}">
           {{ blog.title }}
         </a>
         <p>
           {{ blog.excerpt }}
         </p>
-        <button class="btn post-btn" routerLink="/detail/{{blog._id}}">
+        <button class="btn post-btn" routerLink="/detail/{{ blog._id }}">
           Read More &nbsp; <i class="fas fa-arrow-right"></i>
         </button>
         <ng-container *ngIf="currentAdmin">
-          <button class="btn post-btn" routerLink="/admin/edit/{{blog._id}}">
+          <button class="btn post-btn" routerLink="/admin/edit/{{ blog._id }}">
             Edit
           </button>
           <button class="btn post-btn" (click)="handleDelete(blog._id)">
@@ -40,11 +52,26 @@
       </div>
     </div>
   </div>
-  <div class="pagination flex-row">
+  <!-- <div class="pagination flex-row">
     <a href="#"><i class="fas fa-chevron-left"></i></a>
     <a href="#" class="pages">1</a>
     <a href="#" class="pages">2</a>
     <a href="#" class="pages">3</a>
     <a href="#"><i class="fas fa-chevron-right"></i></a>
-  </div>
+  </div> -->
+  <pagination-controls
+    class="mypagination"
+    (pageChange)="pageChanged($event)"
+    (pageBoundsCorrection)="pageChanged($event)"
+    maxSize="7"
+    directionLinks="false"
+    autoHide="true"
+    responsive="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="page"
+    screenReaderCurrentLabel="You're on page"
+  >
+  </pagination-controls>
 </div>

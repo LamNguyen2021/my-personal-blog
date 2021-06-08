@@ -54,7 +54,7 @@
           >
         </div>
         <a routerLink="/" class="link">&larr; Back to home</a>
-        <button class="btn" [disabled]="loginForm.invalid">Log In</button>
+        <button class="btn" [disabled]="loginForm.invalid || loading">Log In</button>
       </form>
       <!----x-----x---->
     </div>

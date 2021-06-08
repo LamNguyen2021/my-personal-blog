@@ -1,5 +1,4 @@
 export interface CreatePost {
-  categoryId: string;
   title: string;
   content: string;
   excerpt: string;
@@ -8,7 +7,6 @@ export interface CreatePost {
 
 export interface NewPost {
   _id: string;
-  categoryId: string;
   title: string;
   content: string;
   excerpt: string;
@@ -19,7 +17,6 @@ export interface NewPost {
 }
 
 export interface EditPost {
-  categoryId: string;
   title: string;
   content: string;
   excerpt: string;
@@ -28,7 +25,6 @@ export interface EditPost {
 
 export interface EditedPost {
   _id: string;
-  categoryId: string;
   title: string;
   content: string;
   excerpt: string;

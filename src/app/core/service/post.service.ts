@@ -25,12 +25,28 @@ export class PostService {
   }
 
   editPost(values: EditPost, id: string): Observable<EditedPost> {
+    const token = JSON.parse(localStorage.getItem('admin')).token;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+      }),
+    };
     const url = `https://blog-nodejs-api.herokuapp.com/api/post/${id}`;
-    return this.http.put<EditedPost>(url, values);
+    return this.http.put<EditedPost>(url, values, httpOptions);
   }
 
-  deletePost(id: string):Observable<any> {
+  deletePost(id: string): Observable<any> {
+    const token = JSON.parse(localStorage.getItem('admin')).token;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+      }),
+    };
     const url = `https://blog-nodejs-api.herokuapp.com/api/post/${id}`;
-    return this.http.delete(url)
+    return this.http.delete(url, httpOptions);
   }
 }

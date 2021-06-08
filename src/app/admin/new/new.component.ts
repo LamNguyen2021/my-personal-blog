@@ -15,15 +15,15 @@ import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64u
 })
 export class NewComponent implements OnInit {
   url_regex = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  loading:boolean = false;
 
   isEditMode: boolean = false;
   id: string;
-  blogDetail: BlogDetail[] = [];
+  blogDetail: BlogDetail;
 
   public Editor = ClassicEditor;
 
   createForm: FormGroup = new FormGroup({
-    categoryId: new FormControl('60b65e8bce734c00151f7d7c'),
     title: new FormControl('', [Validators.required]),
     urlImage: new FormControl('', [
       Validators.required,
@@ -32,6 +32,7 @@ export class NewComponent implements OnInit {
     excerpt: new FormControl('', [
       Validators.required,
       Validators.minLength(100),
+      Validators.maxLength(500)
     ]),
     content: new FormControl('', [Validators.required]),
   });
@@ -49,18 +50,22 @@ export class NewComponent implements OnInit {
     }
 
     if (this.isEditMode) {
+      this.loading = true;
       this.postService.editPost(createForm.value, this.id).subscribe({
         complete: () => {
           createForm.reset();
           alert('Edit post success');
+          this.loading = false;
           this.router.navigateByUrl('/');
         },
       });
     } else {
+      this.loading = true;
       this.postService.createPost(createForm.value).subscribe({
         complete: () => {
           createForm.reset();
           alert('Create post success');
+          this.loading = false;
           this.router.navigateByUrl('/');
         },
       });
@@ -75,10 +80,10 @@ export class NewComponent implements OnInit {
       // lay duoc params, thi goi API
       this.blogService.getBlogDetail(this.id).subscribe((result) => {
         this.createForm.patchValue({
-          title: result[0].title,
-          urlImage: result[0].urlImage,
-          excerpt: result[0].excerpt,
-          content: result[0].content,
+          title: result.title,
+          urlImage: result.urlImage,
+          excerpt: result.excerpt,
+          content: result.content,
         });
       });
     }

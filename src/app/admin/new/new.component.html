@@ -3,16 +3,6 @@
   <div class="new-content">
     <form (ngSubmit)="handleSubmitArticle(createForm)" [formGroup]="createForm">
       <div class="form-element">
-        <label for="categoryId">Category</label>
-        <input
-          id="categoryId"
-          type="text"
-          placeholder=""
-          formControlName="categoryId"
-          autocomplete="off"
-        />
-      </div>
-      <div class="form-element">
         <label for="title">Title</label>
         <input
           id="title"
@@ -79,8 +69,8 @@
         <span class="error" *ngIf="createForm.get('excerpt').errors.required"
           >*Excerpt is required</span
         >
-        <span class="error" *ngIf="createForm.get('excerpt').errors.minlength"
-          >*Excerpt must be more than 100 characters</span
+        <span class="error" *ngIf="createForm.get('excerpt').errors.minlength || createForm.get('excerpt').errors.maxlength"
+          >*Excerpt must be between 100 and 500 characters</span
         >
       </div>
       <!-- ----X---X----- -->
@@ -107,11 +97,11 @@
       </div>
 
       <span *ngIf="isEditMode; else createButton">
-        <button class="btn" [disabled]="createForm.invalid">Edit</button>
+        <button class="btn" [disabled]="createForm.invalid || loading">Edit</button>
       </span>
 
       <ng-template #createButton>
-        <button class="btn" [disabled]="createForm.invalid">Create</button>
+        <button class="btn" [disabled]="createForm.invalid || loading ">Create</button>
       </ng-template>
     </form>
   </div>

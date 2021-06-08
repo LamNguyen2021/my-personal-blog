@@ -10,7 +10,7 @@ import { BlogDetail } from 'src/app/core/model/blog';
   styleUrls: ['./blog-detail.component.css'],
 })
 export class BlogDetailComponent implements OnInit {
-  blogDetail: BlogDetail[] = [];
+  blogDetail: BlogDetail;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -18,18 +18,19 @@ export class BlogDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // console.log('blog list: ', this.activatedRoute.snapshot.params['blogId']);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 
     this.activatedRoute.params.subscribe({
       next: (params) => {
         // lay duoc params, thi goi API
         this.blogService.getBlogDetail(params.blogId).subscribe((result) => {
-          result[0].publishDate = new Date(
-            result[0].publishDate
+          result.publishDate = new Date(
+            result.publishDate
           ).toLocaleDateString('en-GB');
 
-          result[0].lastModified = new Date(
-            result[0].lastModified
+          result.lastModified = new Date(
+            result.lastModified
           ).toLocaleDateString('en-GB');
 
           this.blogDetail = result;

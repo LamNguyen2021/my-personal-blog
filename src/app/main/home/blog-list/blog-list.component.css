@@ -44,22 +44,23 @@
   margin-right: 10px;
 }
 
-.posts .pagination{
+/*.posts .pagination .ngx-pagination{
   justify-content: center;
   color: var(--text-gray);
   margin: 4rem 0;
 }
 
-.posts .pagination a{
+.posts .pagination .ngx-pagination a{
   padding: .6rem .9rem;
   border-radius: 2rem;
   margin: 0 .3rem;
   font-family: var(--Lexend);
-}
+}*/
 
-.posts .pagination .pages{
-  background: var(--text-gray);
-  color: var(--white);
-}
+/* .posts .ngx-pagination {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+} */
+
 
 /* -------x-------- Site Content --------x-------*/
